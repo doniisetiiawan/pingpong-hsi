@@ -21,19 +21,19 @@
       }
 
       $username.on("change", function() {
-        socket.emit("join", $username.val());
+        socket.emit('join', {username: $username.val()});
       });
 
       socket.on("userJoined", function(data) {
-        addLi(data + " has joined");
+        addLi(data.username + ' has joined');
       });
 
       $ping.on("click", function() {
-        socket.emit("ping", $username.val());
+        socket.emit("ping", {username: $username.val()});
       });
 
-      socket.on("ping", function() {
-        addLi($username.val() + " has pinged!");
+      socket.on('ping', function(data){
+        addLi(data.username + ' has pinged!');
       });
     </script>
   </body>
