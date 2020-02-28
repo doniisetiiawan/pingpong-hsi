@@ -5,9 +5,14 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('userJoined', data);
     socket.username = data.username;
   });
-  socket.on('ping', (data, done) => {
-    socket.broadcast.emit('ping', data);
-    data.username = socket.username;
-    done('ack');
+  socket.on('pingx', () => {
+    socket.broadcast.emit('userPing', {
+      username: socket.username,
+    });
+  });
+  socket.on('disconnect', () => {
+    socket.broadcast.emit('userDisconnect', {
+      username: socket.username,
+    });
   });
 });

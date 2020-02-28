@@ -29,11 +29,17 @@
       });
 
       $ping.on("click", function() {
-        socket.emit("ping", {username: $username.val()});
+        socket.emit("pingx", {username: $username.val()});
       });
 
-      socket.on('ping', function(data){
+      socket.on('userPing', function(data){
         addLi(data.username + ' has pinged!');
+      });
+
+      socket.on('userDisconnect', function(data){
+        if (data.username != null) {
+          addLi(data.username + ' has left :(');
+        }
       });
     </script>
   </body>
