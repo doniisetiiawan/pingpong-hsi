@@ -4,11 +4,9 @@ const defaultArea = $('.default');
 const vipArea = $('.vip');
 const $username = $('#username');
 
-function createButton(user) {
-  return `<li>${user.username}<button class="private_ping" data-socket="${user.socket}">Ping Me</button></li>`;
-}
+const createButton = (user) => `<li>${user.username}<button class="private_ping" data-socket="${user.socket}">Ping Me</button></li>`;
 
-function wireEvents(area, room) {
+const wireEvents = (area, room) => {
   const users = area.find('.users');
   const events = area.find('.events');
 
@@ -49,7 +47,7 @@ function wireEvents(area, room) {
       }
     }
   });
-}
+};
 
 wireEvents(defaultArea, '');
 wireEvents(vipArea, 'vip');

@@ -10,37 +10,6 @@
     ><input type="text" id="username" />
     <button id="ping">Ping</button>
     <ul id="info"></ul>
-    <script>
-      var socket = io.connect("http://localhost:4000");
-      var $username = $("#username"),
-        $ping = $("#ping"),
-        $info = $("#info");
-
-      function addLi(message) {
-        $info.append("<li>" + message + "</li>");
-      }
-
-      $username.on("change", function() {
-        socket.emit('join', {username: $username.val()});
-      });
-
-      socket.on("userJoined", function(data) {
-        addLi(data.username + ' has joined');
-      });
-
-      $ping.on("click", function() {
-        socket.emit("pingx", {username: $username.val()});
-      });
-
-      socket.on('userPing', function(data){
-        addLi(data.username + ' has pinged!');
-      });
-
-      socket.on('userDisconnect', function(data){
-        if (data.username != null) {
-          addLi(data.username + ' has left :(');
-        }
-      });
-    </script>
+    <script src="dgj.js"></script>
   </body>
 </html>

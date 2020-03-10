@@ -1,15 +1,12 @@
-/* eslint-disable no-undef */
 const socket = io.connect('http://localhost:4000');
 const vip = io.connect('http://localhost:4000/vip');
 const defaultArea = $('.default');
 const vipArea = $('.vip');
 const $username = $('#username');
 
-function createButton(user) {
-  return `<li>${user.username} <button class="private_ping" data-username="${user.username}" data-socket="${user.socket}">Ping Me</button></li>`;
-}
+const createButton = (user) => `<li>${user.username} <button class="private_ping" data-username="${user.username}" data-socket="${user.socket}">Ping Me</button></li>`;
 
-function wireEvents(area, socketio) {
+const wireEvents = (area, socketio) => {
   const users = area.find('.users');
   const events = area.find('.events');
 
@@ -41,7 +38,7 @@ function wireEvents(area, socketio) {
       );
     }
   });
-}
+};
 
 wireEvents(defaultArea, socket);
 wireEvents(vipArea, vip);
